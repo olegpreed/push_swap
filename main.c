@@ -6,29 +6,17 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:19:54 by preed             #+#    #+#             */
-/*   Updated: 2022/03/15 18:07:24 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/15 20:03:15 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_num(char *string)
+void	free_pointers(t_stack *p_node, t_stack **pp_node)
 {
-	int	i;
-
-	i = 0;
-	while (string[i] != '\0')
-	{
-		if (string[i] == '+' || string[i] == '-')
-		{
-			if (!ft_isdigit(string[i + 1]))
-				return (1);
-		}
-		else if (!ft_isdigit(string[i]) && string[i] != ' ')
-			return (1);
-			i++;
-	}
-	return (0);
+	if (p_node)
+		free(p_node);
+	int_lstclear(pp_node);
 }
 
 int	push_args(char **argv, int argc, t_stack **pp_node)
@@ -47,19 +35,15 @@ int	push_args(char **argv, int argc, t_stack **pp_node)
 			int_lstclear(pp_node);
 			return (1);
 		}
-		c = ft_atoi(argv[j]);
-		if (c > 2147483647 || c < -2147483648)
-			return (1);
+		c = ft_atoi(argv[j++]);
 		p_node = int_lstnew(c);
-		if (!p_node)
+		if (!p_node || (c > 2147483647 || c < -2147483648))
 		{
-			int_lstclear(pp_node);
+			free_pointers(p_node, pp_node);
 			return (1);
 		}
-		j++;
 		int_lstadd_back(pp_node, p_node);
 	}
-	get_index(pp_node);
 	return (0);
 }
 
@@ -75,24 +59,9 @@ int	string_to_args(char *string, int argc, t_stack **pp_node)
 	j = 0;
 	if (check_num(string))
 		return (1);
-	while (string[i] != '\0')
-	{
-		if (string[i] == ' ')
-		{
-			while (string[i] == ' ')
-			{	
-				if (string[i + 1] == '\0')
-					argc--;
-				i++;
-			}
-			argc++;
-		}
-		i++;
-	}
+	argc = count_argc(string);
 	if (!argc)
 		return (1);
-	if (string[0] == ' ')
-		argc--;
 	argv = ft_split(string, ' ');
 	if (argv == 0)
 		return (1);
@@ -107,11 +76,9 @@ int	string_to_args(char *string, int argc, t_stack **pp_node)
 
 int	make_stack_a(int argc, char **argv, t_stack **pp_node)
 {
-	if (argc == 0)
-		return (1);
 	if (argc == 1)
 	{
-		if (!argv[1])
+		if (!argv[0][0])
 			return (1);
 		if (string_to_args(argv[0], argc, pp_node))
 		{
@@ -127,6 +94,11 @@ int	make_stack_a(int argc, char **argv, t_stack **pp_node)
 			return (1);
 		}
 	}
+	if (!get_index(pp_node))
+	{
+		int_lstclear(pp_node);
+		return (1);
+	}
 	return (0);
 }
 
@@ -141,7 +113,7 @@ int	main(int argc, char **argv)
 	p_node_b = NULL;
 	pp_node_a = &p_node_a;
 	pp_node_b = &p_node_b;
-	if (make_stack_a(argc - 1, ++argv, pp_node_a))
+	if (make_stack_a(argc - 1, ++argv, pp_node_a) || argc == 1)
 		return (1);
 	sort(pp_node_a, pp_node_b);
 	int_lstclear(pp_node_a);

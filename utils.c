@@ -6,36 +6,46 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 19:40:14 by preed             #+#    #+#             */
-/*   Updated: 2022/03/15 16:45:51 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/15 19:51:57 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_doubles(char **argv, int argc)
+int	count_argc(char *string)
 {
 	int	i;
-	int	j;
+	int	argc;
 
 	i = 0;
-	j = 1;
-	while (i < argc)
+	argc = 1;
+	while (string[i] != '\0')
 	{
-		while (j < argc)
-			if (!ft_strncmp(argv[i], argv[j++], 11))
-				return (1);
+		if (string[i] == ' ')
+		{
+			while (string[i] == ' ')
+			{	
+				if (string[i + 1] == '\0')
+					argc--;
+				i++;
+			}
+			argc++;
+		}
 		i++;
-		j = i + 1;
 	}
-	return (0);
+	if (string[0] == ' ')
+		argc--;
+	return (argc);
 }
 
-void	get_index(t_stack **pp_node)
+int	get_index(t_stack **pp_node)
 {
 	int		i;
+	int		j;
 	t_stack	*copy1;
 	t_stack	*copy2;
 
+	j = 0;
 	copy1 = *pp_node;
 	copy2 = *pp_node;
 	while (copy1)
@@ -48,9 +58,13 @@ void	get_index(t_stack **pp_node)
 			copy2 = copy2->next;
 		}
 		copy1->n = i;
+		if (copy1->next)
+			if (copy1->next->content < copy1->content)
+				j = 1;
 		copy1 = copy1->next;
 		copy2 = *pp_node;
 	}
+	return (j);
 }
 
 void	print_lst(t_stack **pp)

@@ -6,7 +6,7 @@ LIB_DIR = libft
 
 LIB_A = libft/libft.a
 
-SRCS = main.c lst.c operations1.c operations2.c operations3.c utils.c sort.c
+SRCS = main.c lst.c operations1.c operations2.c operations3.c utils.c sort.c checker.c
 
 OBJS = $(SRCS:%.c=%.o)
 
