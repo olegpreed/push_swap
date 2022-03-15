@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:30:47 by preed             #+#    #+#             */
-/*   Updated: 2021/10/25 16:08:52 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/07 18:40:08 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_putnbr_fd(int n, int fd)
 	j = count(p);
 	while (j)
 	{
-		if (j == 1 )
+		if (j == 1)
 			c = p % step(j) + 48;
 		else
 			c = p % step(j) / step(j - 1) + 48;

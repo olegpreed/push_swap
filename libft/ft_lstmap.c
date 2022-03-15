@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 22:15:15 by preed             #+#    #+#             */
-/*   Updated: 2021/10/26 20:05:20 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/15 17:38:46 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_iter(t_list *lst, void *(*f)(void *))
 	}
 }
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
 {
 	t_list	*a;
 	t_list	*hold;
@@ -38,7 +38,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		a->next = (t_list *)malloc(sizeof(t_list));
 		if (!(a->next))
 		{
-			ft_lstclear(holst, (*del));
+			ft_lstclear(holst, (*d));
 			return (0);
 		}
 		lst = lst->next;
@@ -51,5 +51,5 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 }
 // creates a copy of linked list in heap
 // applies (*f) to the content of every structure
-// (*del) is applied to content if malloc failed to allocate memory
+// (*d) is applied to content if malloc failed to allocate memory
 // every structure created before is freed in that case 

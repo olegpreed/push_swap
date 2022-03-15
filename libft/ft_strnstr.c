@@ -6,13 +6,13 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 20:17:21 by preed             #+#    #+#             */
-/*   Updated: 2021/10/19 17:44:29 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/15 17:38:16 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *hay, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -21,22 +21,22 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	i = 0;
 	j = 0;
 	if (ft_strlen(needle) == 0)
-		return ((char *)haystack);
-	while (haystack[i])
+		return ((char *)hay);
+	while (hay[i])
 	{
 		w = i;
-		while (needle[j] == haystack[i] && needle[j] != 0 && i < len)
+		while (needle[j] == hay[i] && needle[j] != 0 && i < len)
 		{
 			i++;
 			j++;
 		}
 		if (needle[j] == 0)
-			return ((char *)(haystack + w));
+			return ((char *)(hay + w));
 		j = 0;
 		i = w++;
 		i++;
 	}
 	return (0);
 }
-// finds a needle in a haystack 
+// finds a needle in a hay 
 // (searches not more than len bytes)

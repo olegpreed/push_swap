@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 20:39:42 by preed             #+#    #+#             */
-/*   Updated: 2022/03/07 18:35:30 by preed            ###   ########.fr       */
+/*   Created: 2022/03/14 20:50:40 by preed             #+#    #+#             */
+/*   Updated: 2022/03/14 20:53:25 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	reverse_rotate_ab(t_stack **pp_node_a, t_stack **pp_node_b)
 {
-	t_list	*a;
-
-	if (!*lst)
-	{
-		*lst = new;
-		new->next = 0;
-		return ;
-	}
-	if (new == 0 || !lst)
-		return ;
-	a = ft_lstlast(*lst);
-	a->next = (struct s_list *)new;
+	reverse_rotate_a(pp_node_a);
+	reverse_rotate_b(pp_node_b);
+	write(1, "rrr\n", 3);
 }
-// Adds the element ’new’ at the end of the list.

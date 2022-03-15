@@ -6,34 +6,30 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:01:10 by preed             #+#    #+#             */
-/*   Updated: 2021/10/19 20:19:09 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/15 17:47:45 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_putnbr(const char *str, int i, int e)
+static long long int	ft_putnbr(const char *str, int i)
 {
 	long long int	num;
 
 	num = 0;
-	while (str[i] > 47 && str[i] < 58 )
+	while (str[i] > 47 && str[i] < 58)
 	{
-		if (num > (9223372036854775807 - (long long)((str[i]) - 48)) / 10)
-			return (-2);
-		else if (num == 922337203685477580 && (str[i] - 48) == 7 && e == -1)
-			return (-1);
 		num = 10 * num + (str[i] - 48);
 		i++;
 	}
-	return ((int)num);
+	return (num);
 }
 
-int	ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
-	int	i;
-	int	e;
-	int	k;
+	int				i;
+	long long int	e;
+	long long int	k;
 
 	i = 0;
 	e = 1;
@@ -48,7 +44,7 @@ int	ft_atoi(const char *str)
 		i++;
 	else if (str[i] < 47 || str[i] > 58)
 		return (0);
-	k = ft_putnbr(str, i, e);
+	k = ft_putnbr(str, i);
 	if (k == -2 && e == -1)
 		return (0);
 	else if (k == -2 && e == 1)

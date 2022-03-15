@@ -6,19 +6,41 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:33:41 by preed             #+#    #+#             */
-/*   Updated: 2022/03/04 16:50:04 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/15 16:32:33 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-#include "./libft/libft.h"
+# include <stdio.h>
+# include "./libft/libft.h"
 
-typedef struct t_list {
-	int	n;
-	s_list *next;
-} s_list
+typedef struct s_stack
+{
+	int				n;
+	int				content;
+	struct s_stack	*next;
+}	t_stack;
+
+void	int_lstadd_back(t_stack **lst, t_stack *new);
+void	int_lstclear(t_stack **lst);
+t_stack	*int_lstnew(int content);
+int		lst_count(t_stack **pp_node);
+void	swap_a(t_stack **pp_node_a);
+void	swap_b(t_stack **pp_node_b);
+void	swap_ab(t_stack **pp_node_a, t_stack **pp_node_b);
+void	push_a(t_stack **pp_node_a, t_stack **pp_node_b);
+void	push_b(t_stack **pp_node_a, t_stack **pp_node_b);
+void	rotate_a(t_stack **pp_node_a);
+void	rotate_b(t_stack **pp_node_b);
+void	rotate_ab(t_stack **pp_node_a, t_stack **pp_node_b);
+void	reverse_rotate_a(t_stack **pp_node_a);
+void	reverse_rotate_b(t_stack **pp_node_b);
+void	reverse_rotate_ab(t_stack **pp_node_a, t_stack **pp_node_b);
+void	get_index(t_stack **pp_node);
+void	sort(t_stack **pp_node_a, t_stack **pp_node_b);
+void	print_lst(t_stack **pp);
+int		check_doubles(char **argv, int argc);
 
 #endif

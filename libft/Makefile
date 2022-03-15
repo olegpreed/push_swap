@@ -6,7 +6,7 @@
 #    By: preed <preed@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 20:16:46 by preed             #+#    #+#              #
-#    Updated: 2021/10/25 17:11:27 by preed            ###   ########.fr        #
+#    Updated: 2022/03/07 18:24:35 by preed            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,18 +41,18 @@ CC = gcc
 
 RM = rm -f
 
-FLAGS = -Wall -Wextra -Werror -I${HEADER}
+FLAGS = -Wall -Wextra -Werror 
 
 .PHONY: all clean fclean re bonus
 
 all: ${NAME}
 
 %.o: %.c
-	${CC} ${FLAGS} -c $< -o $@ -MMD
+	${CC} -g ${FLAGS} -c $< -o $@ -MMD
 
 -include ${D_FILES}
 
-${NAME}: ${OBJS}
+${NAME}: ${OBJS} Makefile
 	ar rcs ${NAME} $?
 
 bonus: all
