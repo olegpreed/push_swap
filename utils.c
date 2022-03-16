@@ -6,11 +6,39 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 19:40:14 by preed             #+#    #+#             */
-/*   Updated: 2022/03/15 19:51:57 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/16 17:27:20 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	find_max_i(t_stack *copy, int max)
+{
+	int	i;
+
+	i = 0;
+	while (copy->n != max)
+	{
+		i++;
+		copy = copy->next;
+	}
+	return (i);
+}
+
+int	find_max(t_stack *copy, int *p_length)
+{
+	int	max;
+
+	max = -1;
+	while (copy)
+	{
+		if (copy->n > max)
+			max = copy->n;
+		copy = copy->next;
+		(*p_length)++;
+	}
+	return (max);
+}
 
 int	count_argc(char *string)
 {

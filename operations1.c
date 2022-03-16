@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:51:52 by preed             #+#    #+#             */
-/*   Updated: 2022/03/14 20:26:27 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:32:21 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	swap_a(t_stack **pp_node_a)
 
 	if (lst_count(pp_node_a) == 1 || !lst_count(pp_node_a))
 		return ;
-	printf("stack size: %d\n", lst_count(pp_node_a));
 	p_node_a = *pp_node_a;
 	temp = p_node_a->next->next;
 	p_node_a->next->next = p_node_a;
@@ -35,7 +34,6 @@ void	swap_b(t_stack **pp_node_b)
 
 	if (lst_count(pp_node_b) == 1 || !lst_count(pp_node_b))
 		return ;
-	printf("stack size: %d\n", lst_count(pp_node_b));
 	p_node_b = *pp_node_b;
 	temp = p_node_b->next->next;
 	p_node_b->next->next = p_node_b;

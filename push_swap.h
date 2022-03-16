@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:33:41 by preed             #+#    #+#             */
-/*   Updated: 2022/03/15 19:43:15 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/16 17:37:24 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ void	reverse_rotate_a(t_stack **pp_node_a);
 void	reverse_rotate_b(t_stack **pp_node_b);
 void	reverse_rotate_ab(t_stack **pp_node_a, t_stack **pp_node_b);
 int		get_index(t_stack **pp_node);
-void	sort(t_stack **pp_node_a, t_stack **pp_node_b);
+void	sort(t_stack **pp_node_a, t_stack **pp_node_b, int argc);
 void	print_lst(t_stack **pp);
 int		check_doubles(char **argv, int argc);
-int		string_to_args(char *string, int argc, t_stack **pp_node);
 int		check_num(char *string);
 int		count_argc(char *string);
+int		find_max_i(t_stack *copy, int max);
+int		find_max(t_stack *copy, int *p_length);
 
 #endif
