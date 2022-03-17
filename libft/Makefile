@@ -52,7 +52,7 @@ all: ${NAME}
 
 -include ${D_FILES}
 
-${NAME}: ${OBJS} Makefile
+${NAME}: ${OBJS}
 	ar rcs ${NAME} $?
 
 bonus: all

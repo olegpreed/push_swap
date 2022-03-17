@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:33:41 by preed             #+#    #+#             */
-/*   Updated: 2022/03/16 17:37:24 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/17 21:17:37 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+void	free_pointers(t_stack *p_node, t_stack **pp_node);
+int		push_args(char **argv, int argc, t_stack **pp_node);
+int		string_to_args(char *string, int argc, t_stack **pp_node, int *p_argc);
+int		make_stack_a(int argc, char **argv, t_stack **pp_node, int *p_argc);
 void	int_lstadd_back(t_stack **lst, t_stack *new);
 void	int_lstclear(t_stack **lst);
 t_stack	*int_lstnew(int content);

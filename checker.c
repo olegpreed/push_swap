@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:12:49 by preed             #+#    #+#             */
-/*   Updated: 2022/03/15 18:28:59 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/17 19:05:46 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_num(char *string)
 		}
 		else if (!ft_isdigit(string[i]) && string[i] != ' ')
 			return (1);
-			i++;
+		i++;
 	}
 	return (0);
 }
