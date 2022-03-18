@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 14:58:57 by preed             #+#    #+#             */
-/*   Updated: 2022/03/12 19:38:55 by preed            ###   ########.fr       */
+/*   Updated: 2022/03/18 16:49:18 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,3 @@ void	int_lstadd_back(t_stack **lst, t_stack *new)
 	a = int_lstlast(*lst);
 	a->next = (struct s_stack *)new;
 }
-// creates a structure in heap with content
-// and null pointer in next

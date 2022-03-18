@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations1.c                                      :+:      :+:    :+:   */
+/*   operations1_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:51:52 by preed             #+#    #+#             */
-/*   Updated: 2022/03/17 22:38:28 by oleg             ###   ########.fr       */
+/*   Updated: 2022/03/17 22:46:10 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-void	swap_a(t_stack **pp_node_a)
+void	b_swap_a(t_stack **pp_node_a)
 {
 	t_stack	*p_node_a;
 	t_stack	*temp;
@@ -24,10 +24,9 @@ void	swap_a(t_stack **pp_node_a)
 	p_node_a->next->next = p_node_a;
 	*pp_node_a = p_node_a->next;
 	p_node_a->next = temp;
-	write(1, "sa\n", 3);
 }
 
-void	swap_b(t_stack **pp_node_b)
+void	b_swap_b(t_stack **pp_node_b)
 {
 	t_stack	*p_node_b;
 	t_stack	*temp;
@@ -39,17 +38,15 @@ void	swap_b(t_stack **pp_node_b)
 	p_node_b->next->next = p_node_b;
 	*pp_node_b = p_node_b->next;
 	p_node_b->next = temp;
-	write(1, "sb\n", 3);
 }
 
-void	swap_ab(t_stack **pp_node_a, t_stack **pp_node_b)
+void	b_swap_ab(t_stack **pp_node_a, t_stack **pp_node_b)
 {
 	swap_a(pp_node_a);
 	swap_b(pp_node_b);
-	write(1, "ss\n", 3);
 }
 
-void	push_b(t_stack **pp_node_a, t_stack **pp_node_b)
+void	b_push_b(t_stack **pp_node_a, t_stack **pp_node_b)
 {
 	t_stack	*temp_b;
 
@@ -59,10 +56,9 @@ void	push_b(t_stack **pp_node_a, t_stack **pp_node_b)
 	*pp_node_b = *pp_node_a;
 	*pp_node_a = (*pp_node_a)->next;
 	(*pp_node_b)->next = temp_b;
-	write(1, "pb\n", 3);
 }
 
-void	push_a(t_stack **pp_node_a, t_stack **pp_node_b)
+void	b_push_a(t_stack **pp_node_a, t_stack **pp_node_b)
 {
 	t_stack	*temp_a;
 
@@ -72,5 +68,4 @@ void	push_a(t_stack **pp_node_a, t_stack **pp_node_b)
 	*pp_node_a = *pp_node_b;
 	*pp_node_b = (*pp_node_b)->next;
 	(*pp_node_a)->next = temp_a;
-	write(1, "pa\n", 3);
 }
