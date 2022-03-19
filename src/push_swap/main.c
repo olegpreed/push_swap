@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:19:54 by preed             #+#    #+#             */
-/*   Updated: 2022/03/19 20:44:53 by oleg             ###   ########.fr       */
+/*   Updated: 2022/03/19 22:46:51 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 	pp_node_b = &p_node_b;
 	if (make_stack_a(argc - 1, ++argv, pp_node_a, p_argc) || argc == 1)
 		return (1);
-	print_lst(pp_node_a);
 	sort(pp_node_a, pp_node_b, *p_argc);
 	int_lstclear(pp_node_a);
 	int_lstclear(pp_node_b);

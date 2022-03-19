@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:05:46 by preed             #+#    #+#             */
-/*   Updated: 2022/03/17 22:46:47 by oleg             ###   ########.fr       */
+/*   Updated: 2022/03/20 00:31:38 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	b_rotate_b(t_stack **pp_node_b)
 
 void	b_rotate_ab(t_stack **pp_node_a, t_stack **pp_node_b)
 {
-	rotate_a(pp_node_a);
-	rotate_b(pp_node_b);
+	b_rotate_a(pp_node_a);
+	b_rotate_b(pp_node_b);
 }
 
 void	b_reverse_rotate_a(t_stack **pp_node_a)

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:23:51 by oleg              #+#    #+#             */
-/*   Updated: 2022/03/18 16:36:12 by oleg             ###   ########.fr       */
+/*   Updated: 2022/03/20 00:08:43 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	get_commands(t_stack **pp_node_a, t_stack **pp_node_b, int argc)
 	ft_memset(command, '\0', 4);
 	while (read(0, command, 4))
 	{
-		execute_command(command, pp_node_a, pp_node_b);
+		if (ft_strchr(command, '\n'))
+			execute_command(command, pp_node_a, pp_node_b);
 		ft_memset(command, '\0', 4);
 	}
 	if (!get_index(pp_node_a) && !(*pp_node_b))

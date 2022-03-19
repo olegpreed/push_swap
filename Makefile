@@ -6,7 +6,7 @@
 #    By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 17:13:03 by oleg              #+#    #+#              #
-#    Updated: 2022/03/19 22:06:16 by oleg             ###   ########.fr        #
+#    Updated: 2022/03/20 00:25:30 by oleg             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,9 @@ NAME          = push_swap
 NAME_B        = checker
 
 CC            = gcc
-FLAGS         = -Wall -Wextra -Werror
+FLAGS         = -g -Wall -Wextra -Werror
 
 LIBFT         = libft/libft.a
-
 INC           = includes/
 HEADER		  = push_swap.h checker_bonus.h	
 HEADERS       = $(addprefix $(INC), $(HEADER))
@@ -42,16 +41,18 @@ $(OBJS_DIR)$(PUSH_SWAP_DIR)%.o: $(SRCS_DIR)$(PUSH_SWAP_DIR)%.c
 $(OBJS_DIR)$(CHECKER_DIR)%.o: $(SRCS_DIR)$(CHECKER_DIR)%.c
 	${CC} ${FLAGS} -c $< -o $@ -I$(INC)
 
+.PHONY: all clean fclean re bonus
+
 all: makelib $(HEADERS) $(NAME)
 
 $(OBJS_DIR):
-		mkdir $@
+		@mkdir -p $@
 
 $(OBJS_DIR)$(CHECKER_DIR): $(OBJS_DIR)
-		mkdir $@
+		@mkdir -p $@
 
 $(OBJS_DIR)$(PUSH_SWAP_DIR): $(OBJS_DIR)
-		mkdir $@
+		@mkdir -p $@
 
 $(NAME): $(OBJS_DIR)$(PUSH_SWAP_DIR) $(PUSH_SWAP_OBJ) $(MAIN_OBJ) $(LIBFT) Makefile
 	$(CC) $(FLAGS) $(MAIN_OBJ) $(PUSH_SWAP_OBJ) -o $(NAME) $(LIBFT) -I$(INC)
@@ -59,7 +60,9 @@ $(NAME): $(OBJS_DIR)$(PUSH_SWAP_DIR) $(PUSH_SWAP_OBJ) $(MAIN_OBJ) $(LIBFT) Makef
 makelib:
 	@make -C $(LIB_DIR) bonus --no-print-directory
 
-bonus: all $(OBJS_DIR)$(CHECKER_DIR) $(CHECKER_OBJ)
+bonus: $(NAME_B)
+
+$(NAME_B): $(OBJS_DIR)$(CHECKER_DIR) $(CHECKER_OBJ) $(PUSH_SWAP_OBJ) $(LIBFT) Makefile
 	$(CC) $(FLAGS) $(CHECKER_OBJ) $(PUSH_SWAP_OBJ) -o $(NAME_B) $(LIBFT) -I$(INC)
 
 clean:
@@ -67,6 +70,6 @@ clean:
 	rm -rvf $(OBJS_DIR)
 
 fclean: clean
-	rm -rf $(NAME) $(NAME_B) $(LIBFT)
+	rm -rvf $(NAME) $(NAME_B) $(LIBFT)
 
 re: fclean all
