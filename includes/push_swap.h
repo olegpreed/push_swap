@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:33:41 by preed             #+#    #+#             */
-/*   Updated: 2022/03/17 22:38:17 by oleg             ###   ########.fr       */
+/*   Updated: 2022/03/19 20:43:35 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdio.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_stack
 {

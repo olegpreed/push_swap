@@ -1,49 +1,72 @@
-NAME = push_swap
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/19 17:13:03 by oleg              #+#    #+#              #
+#    Updated: 2022/03/19 22:06:16 by oleg             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME_B = ./checker/checker
+NAME          = push_swap
+NAME_B        = checker
 
-INC = -I$(LIB_DIR)
+CC            = gcc
+FLAGS         = -Wall -Wextra -Werror
 
-LIB_DIR = libft
+LIBFT         = libft/libft.a
 
-LIB_A = libft/libft.a
+INC           = includes/
+HEADER		  = push_swap.h checker_bonus.h	
+HEADERS       = $(addprefix $(INC), $(HEADER))
 
-SRCS_M = main.c
+LIB_DIR       = libft/
+PUSH_SWAP_DIR = push_swap/
+CHECKER_DIR   = checker/
+OBJS_DIR      = objs/
+SRCS_DIR      = src/
+    
+MAIN_SRC      = main.c
+PUSH_SWAP_SRC = parser.c parser2.c operations1.c operations2.c operations3.c lst.c utils.c sort.c
+CHECKER_SRC   = main_bonus.c input_bonus.c operations1_bonus.c operations2_bonus.c operations3_bonus.c
 
-SRCS = parser.c lst.c operations1.c operations2.c operations3.c utils.c sort.c parser2.c
+MAIN_OBJ      = $(addprefix $(OBJS_DIR)$(PUSH_SWAP_DIR),$(MAIN_SRC:%.c=%.o))
+PUSH_SWAP_OBJ = $(addprefix $(OBJS_DIR)$(PUSH_SWAP_DIR),$(PUSH_SWAP_SRC:%.c=%.o))
+CHECKER_OBJ   = $(addprefix $(OBJS_DIR)$(CHECKER_DIR),$(CHECKER_SRC:%.c=%.o))
 
-SRCS_B = ./checker/main_bonus.c ./checker/input_bonus.c \
-		./checker/operations1_bonus.c ./checker/operations2_bonus.c ./checker/operations3_bonus.c
+$(OBJS_DIR)$(PUSH_SWAP_DIR)%.o: $(SRCS_DIR)$(PUSH_SWAP_DIR)%.c
+	${CC} ${FLAGS} -c $< -o $@ -I$(INC)
 
-OBJS = $(SRCS:%.c=%.o)
+$(OBJS_DIR)$(CHECKER_DIR)%.o: $(SRCS_DIR)$(CHECKER_DIR)%.c
+	${CC} ${FLAGS} -c $< -o $@ -I$(INC)
 
-OBJS_B = $(SRCS_B:%.c=%.o)
+all: makelib $(HEADERS) $(NAME)
 
-OBJS_M = $(SRCS_M:%.c=%.o)
+$(OBJS_DIR):
+		mkdir $@
 
-FLAGS = -g -Wall -Wextra -Werror
+$(OBJS_DIR)$(CHECKER_DIR): $(OBJS_DIR)
+		mkdir $@
 
-CC = gcc
+$(OBJS_DIR)$(PUSH_SWAP_DIR): $(OBJS_DIR)
+		mkdir $@
 
-%.o: %.c
-	${CC} -g ${FLAGS} -c $< -o $@ 
-
-all: makelib $(NAME)
-
-bonus: $(OBJS_B)
-	$(CC) $(FLAGS) $(OBJS_B) $(OBJS) -o $(NAME_B) $(LIB_A)
-
-$(NAME): $(OBJS_M) $(OBJS) $(LIB_A) Makefile push_swap.h
-	$(CC) $(FLAGS) $(OBJS_M) $(OBJS) -o $(NAME) $(LIB_A)
+$(NAME): $(OBJS_DIR)$(PUSH_SWAP_DIR) $(PUSH_SWAP_OBJ) $(MAIN_OBJ) $(LIBFT) Makefile
+	$(CC) $(FLAGS) $(MAIN_OBJ) $(PUSH_SWAP_OBJ) -o $(NAME) $(LIBFT) -I$(INC)
 
 makelib:
-	@make -C $(LIB_DIR) bonus
+	@make -C $(LIB_DIR) bonus --no-print-directory
+
+bonus: all $(OBJS_DIR)$(CHECKER_DIR) $(CHECKER_OBJ)
+	$(CC) $(FLAGS) $(CHECKER_OBJ) $(PUSH_SWAP_OBJ) -o $(NAME_B) $(LIBFT) -I$(INC)
 
 clean:
-	make -C $(LIB_DIR) clean
-	rm -rvf $(OBJS) $(OBJS_B) $(OBJS_M)
+	@make -C $(LIB_DIR) clean --no-print-directory
+	rm -rvf $(OBJS_DIR)
 
 fclean: clean
-	rm -rf $(NAME) $(NAME_B) $(LIB_A)
+	rm -rf $(NAME) $(NAME_B) $(LIBFT)
 
 re: fclean all

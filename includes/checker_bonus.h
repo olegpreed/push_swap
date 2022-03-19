@@ -6,14 +6,14 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:12 by oleg              #+#    #+#             */
-/*   Updated: 2022/03/17 22:43:54 by oleg             ###   ########.fr       */
+/*   Updated: 2022/03/19 20:58:31 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_BONUS_H
 # define CHECKER_BONUS_H
 
-# include "../push_swap.h"
+# include "push_swap.h"
 
 int		get_commands(t_stack **pp_node_a, t_stack **pp_node_b, int argc);
 void	b_swap_a(t_stack **pp_node_a);

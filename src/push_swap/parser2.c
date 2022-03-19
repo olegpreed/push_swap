@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:12:49 by preed             #+#    #+#             */
-/*   Updated: 2022/03/17 19:05:46 by oleg             ###   ########.fr       */
+/*   Updated: 2022/03/19 16:33:59 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,14 @@ int	check_num(char *string)
 	i = 0;
 	while (string[i] != '\0')
 	{
-		if (string[i] == '+' || string[i] == '-')
+		if ((string[i] == '+' || string[i] == '-') && i == 0)
 		{
 			if (!ft_isdigit(string[i + 1]))
+				return (1);
+		}
+		else if ((string[i] == '+' || string[i] == '-') && i != 0)
+		{
+			if (!ft_isdigit(string[i + 1]) || string[i - 1] != ' ')
 				return (1);
 		}
 		else if (!ft_isdigit(string[i]) && string[i] != ' ')
