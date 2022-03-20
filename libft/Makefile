@@ -6,7 +6,7 @@
 #    By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 20:16:46 by preed             #+#    #+#              #
-#    Updated: 2022/03/20 00:25:05 by oleg             ###   ########.fr        #
+#    Updated: 2022/03/20 15:53:56 by oleg             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ all: ${NAME}
 
 -include ${D_FILES}
 
-${NAME}: ${OBJS}
+${NAME}: ${OBJS} ${HEADER}
 	ar rcs ${NAME} $?
 
 bonus: all

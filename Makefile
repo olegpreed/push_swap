@@ -6,7 +6,7 @@
 #    By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 17:13:03 by oleg              #+#    #+#              #
-#    Updated: 2022/03/20 00:25:30 by oleg             ###   ########.fr        #
+#    Updated: 2022/03/20 16:02:42 by oleg             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,15 +54,15 @@ $(OBJS_DIR)$(CHECKER_DIR): $(OBJS_DIR)
 $(OBJS_DIR)$(PUSH_SWAP_DIR): $(OBJS_DIR)
 		@mkdir -p $@
 
-$(NAME): $(OBJS_DIR)$(PUSH_SWAP_DIR) $(PUSH_SWAP_OBJ) $(MAIN_OBJ) $(LIBFT) Makefile
+$(NAME): $(OBJS_DIR)$(PUSH_SWAP_DIR) $(PUSH_SWAP_OBJ) $(MAIN_OBJ) $(LIBFT) $(HEADERS) Makefile 
 	$(CC) $(FLAGS) $(MAIN_OBJ) $(PUSH_SWAP_OBJ) -o $(NAME) $(LIBFT) -I$(INC)
 
 makelib:
 	@make -C $(LIB_DIR) bonus --no-print-directory
 
-bonus: $(NAME_B)
+bonus: all $(NAME_B)
 
-$(NAME_B): $(OBJS_DIR)$(CHECKER_DIR) $(CHECKER_OBJ) $(PUSH_SWAP_OBJ) $(LIBFT) Makefile
+$(NAME_B): $(OBJS_DIR)$(CHECKER_DIR) $(CHECKER_OBJ) $(PUSH_SWAP_OBJ) $(LIBFT) $(HEADERS) Makefile
 	$(CC) $(FLAGS) $(CHECKER_OBJ) $(PUSH_SWAP_OBJ) -o $(NAME_B) $(LIBFT) -I$(INC)
 
 clean:
